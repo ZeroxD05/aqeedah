@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aqeedah für Anfänger</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #2c786c;
+        --secondary-color: #f4f1de;
+        --text-color: #333;
+        --bg-color: #fff;
+        --pattern-opacity: 0.1;
+      }
+
+      [data-theme="dark"] {
+        --primary-color: #4ba3c3;
+        --secondary-color: #1a3c34;
+        --text-color: #e0e0e0;
+        --bg-color: #1a1a1a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://www.transparenttextures.com/patterns/arabesque.png");
+        opacity: var(--pattern-opacity);
+        z-index: -1;
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      select,
+      button {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+      }
+
+      button {
+        background-color: transparent;
+        font-size: 1.2rem;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        width: 250px;
+        background-color: var(--secondary-color);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding-top: 4rem;
+        transition: transform 0.3s ease;
+        z-index: 999;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 1rem;
+      }
+
+      .sidebar a {
+        color: var(--text-color);
+        text-decoration: none;
+        display: block;
+        padding: 0.75rem;
+        border-radius: 5px;
+        margin-bottom: 0.5rem;
+        transition: background 0.3s;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 2rem auto 2rem 270px;
+        padding: 0 1rem;
+      }
+
+      section {
+        background-color: var(--bg-color);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      section.active {
+        display: block;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      p,
+      ul {
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 2rem;
+      }
+
+      .icon {
+        color: var(--primary-color);
+        margin-right: 0.5rem;
+      }
+
+      #to-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 0.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: none;
+      }
+
+      #to-top.show {
+        display: block;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        main {
+          margin-left: 0;
+        }
+
+        .header-container {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        section {
+          padding: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .controls {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        select,
+        button {
+          width: 100%;
+        }
+      }
+
+      /* Arabisch (RTL) */
+      [lang="ar"] {
+        direction: rtl;
+        font-family: "Amiri", serif;
+      }
+
+      [lang="ar"] .sidebar {
+        left: auto;
+        right: 0;
+        transform: translateX(100%);
+      }
+
+      [lang="ar"] .sidebar.open {
+        transform: translateX(0);
+      }
+
+      [lang="ar"] main {
+        margin-right: 270px;
+        margin-left: auto;
+      }
+
+      @media (max-width: 768px) {
+        [lang="ar"] main {
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <button class="hamburger"><i class="fas fa-bars"></i></button>
+        <div class="logo">Aqeedah für Anfänger</div>
+        <div class="controls">
+          <select id="language">
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+          <button id="theme-toggle">🌙</button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#intro" class="active">Einführung</a></li>
+        <li><a href="#athariyyah">Was ist Athariyyah?</a></li>
+        <li><a href="#hanbali">Hanbali-Rechtsschule</a></li>
+        <li><a href="#principles">Grundprinzipien</a></li>
+        <li><a href="#examples">Beispiele</a></li>
+        <li><a href="#doubts">Zweifel klären</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="intro" class="active">
+        <h1>
+          <i class="fas fa-book icon"></i>
+          <span class="title">Willkommen! Was ist Aqeedah?</span>
+        </h1>
+        <p class="text">
+          Hallo und herzlich willkommen! Wenn du neu im Islam bist, fragst du
+          dich vielleicht, was „Aqeedah“ bedeutet. Ganz einfach: Aqeedah ist
+          das, was du als Muslim im Herzen glaubst. Es ist wie der Kompass
+          deines Glaubens, der dir zeigt, woran du glaubst und warum.
+        </p>
+        <p class="text">
+          Die Aqeedah der Athariyyah ist eine ganz klare und einfache Art, den
+          Islam zu verstehen. Sie sagt: „Vertrau auf den Qur’an und die Worte
+          des Propheten Muhammad (Friede sei mit ihm), ohne viel zu
+          spekulieren.“ In dieser Schule, die eng mit der Hanbali-Rechtsschule
+          verbunden ist, lernst du, wie du deinen Glauben stark und rein hältst.
+        </p>
+        <p class="text">
+          Die Aqeedah hat sechs wichtige Punkte, die wir „Säulen des Iman“
+          nennen:
+        </p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-star icon"></i> Glaube an Allah – Er ist der Eine,
+            der alles geschaffen hat.
+          </li>
+          <li>
+            <i class="fas fa-angel icon"></i> Glaube an die Engel – wie Jibril,
+            der die Botschaften Allahs bringt.
+          </li>
+          <li>
+            <i class="fas fa-scroll icon"></i> Glaube an die Bücher – wie den
+            Qur’an oder die Torah.
+          </li>
+          <li>
+            <i class="fas fa-user-shield icon"></i> Glaube an die Propheten –
+            wie Muhammad oder Musa (Friede sei mit ihnen).
+          </li>
+          <li>
+            <i class="fas fa-balance-scale icon"></i> Glaube an den Tag des
+            Gerichts – wenn wir alle vor Allah stehen.
+          </li>
+          <li>
+            <i class="fas fa-road icon"></i> Glaube an die Vorherbestimmung –
+            alles geschieht nach Allahs Plan, aber du hast Entscheidungen.
+          </li>
+        </ul>
+      </section>
+
+      <section id="athariyyah">
+        <h1>
+          <i class="fas fa-mosque icon"></i>
+          <span class="title">Was ist die Athariyyah?</span>
+        </h1>
+        <p class="text">
+          Die Athariyyah ist wie ein klarer Weg, um den Islam zu verstehen.
+          Stell dir vor, du liest den Qur’an oder hörst einen Hadith (eine
+          Aussage des Propheten). Die Athariyyah sagt: „Glaube daran, wie es
+          geschrieben steht, ohne es zu verkomplizieren.“
+        </p>
+        <p class="text">
+          Hier sind die wichtigsten Dinge, die die Athariyyah ausmachen:
+        </p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-hand-holding-heart icon"></i>
+            <strong>Allahs Beschreibungen akzeptieren:</strong> Der Qur’an sagt,
+            Allah hat eine „Hand“ oder „ist über dem Thron“. Wir sagen: „Ja, das
+            stimmt“, aber wir fragen nicht „Wie sieht das aus?“, weil Allah
+            einzigartig ist.
+          </li>
+          <li>
+            <i class="fas fa-ban icon"></i>
+            <strong>Keine philosophischen Diskussionen:</strong> Manche Leute
+            versuchen, den Glauben mit komplizierten Argumenten zu erklären.
+            Athariyyah sagt: „Der Qur’an und die Sunnah reichen.“
+          </li>
+          <li>
+            <i class="fas fa-users icon"></i>
+            <strong>Die ersten Muslime folgen:</strong> Die besten Lehrer sind
+            die ersten drei Generationen des Islam – die Gefährten des Propheten
+            und ihre Nachfolger.
+          </li>
+        </ul>
+        <p class="text">
+          Die Athariyyah ist super für Anfänger, weil sie einfach ist. Du musst
+          kein Gelehrter sein, um sie zu verstehen!
+        </p>
+      </section>
+
+      <section id="hanbali">
+        <h1>
+          <i class="fas fa-gavel icon"></i>
+          <span class="title">Die Hanbali-Rechtsschule</span>
+        </h1>
+        <p class="text">
+          Die Hanbali-Rechtsschule ist eine von vier „Schulen“ im sunnitischen
+          Islam, die dir helfen, die Regeln des Islam zu verstehen. Sie wurde
+          von Imam Ahmad ibn Hanbal gegründet, einem Mann, der den Qur’an und
+          die Sunnah über alles stellte.
+        </p>
+        <p class="text">Warum ist Hanbali besonders?</p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-book-open icon"></i>
+            <strong>Nur Qur’an und Sunnah:</strong> Imam Ahmad sagte: „Wenn du
+            wissen willst, wie du beten oder fasten sollst, schau in die
+            Quellen.“
+          </li>
+          <li>
+            <i class="fas fa-shield-alt icon"></i>
+            <strong>Schutz vor Neuem:</strong> Er warnte davor, neue Dinge im
+            Glauben zu erfinden, die der Prophet nicht gemacht hat.
+          </li>
+          <li>
+            <i class="fas fa-heart icon"></i>
+            <strong>Standhaftigkeit:</strong> Imam Ahmad wurde sogar gefangen
+            genommen, weil er seinen Glauben nicht änderte. Er ist ein Vorbild
+            für Stärke.
+          </li>
+        </ul>
+        <p class="text">
+          Die Hanbali-Schule passt perfekt zur Athariyyah, weil beide sagen:
+          „Halte es einfach und bleib bei den Ursprüngen.“
+        </p>
+      </section>
+
+      <section id="principles">
+        <h1>
+          <i class="fas fa-compass icon"></i>
+          <span class="title">Die Grundprinzipien der Athari-Aqeedah</span>
+        </h1>
+        <p class="text">
+          Die Athari-Aqeedah hat ein paar klare Regeln, die dir helfen, deinen
+          Glauben zu verstehen. Hier sind die wichtigsten:
+        </p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-star-and-crescent icon"></i>
+            <strong>Tawhid – Allah ist Einer:</strong> Alles beginnt damit, dass
+            du glaubst, dass Allah der Einzige ist, der Anbetung verdient. Das
+            bedeutet:
+            <ul>
+              <li>Allah ist der Schöpfer von allem.</li>
+              <li>Du betest nur zu Allah, nicht zu Heiligen oder Gräbern.</li>
+              <li>Allahs Namen und Eigenschaften sind einzigartig.</li>
+            </ul>
+          </li>
+          <li>
+            <i class="fas fa-lightbulb icon"></i>
+            <strong>Allahs Eigenschaften:</strong> Wenn der Qur’an sagt, Allah
+            „hört“ oder „sieht“, glauben wir das, ohne zu fragen, wie es
+            funktioniert. Allah ist nicht wie wir!
+          </li>
+          <li>
+            <i class="fas fa-road icon"></i>
+            <strong>Qadar – Vorherbestimmung:</strong> Alles, was passiert, ist
+            Teil von Allahs Plan. Aber du hast die Freiheit, gute oder schlechte
+            Entscheidungen zu treffen.
+          </li>
+          <li>
+            <i class="fas fa-users icon"></i>
+            <strong>Die Gefährten ehren:</strong> Die Freunde des Propheten
+            waren die besten Muslime. Wir lernen von ihnen und respektieren sie.
+          </li>
+        </ul>
+        <p class="text">
+          Diese Prinzipien sind wie ein Leitfaden, der dir hilft, deinen Glauben
+          richtig zu leben.
+        </p>
+      </section>
+
+      <section id="examples">
+        <h1>
+          <i class="fas fa-pray icon"></i>
+          <span class="title">Wie sieht das im Alltag aus?</span>
+        </h1>
+        <p class="text">
+          Die Athari-Aqeedah ist nicht nur Theorie – sie hilft dir im täglichen
+          Leben! Hier sind ein paar Beispiele:
+        </p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-mosque icon"></i>
+            <strong>Reines Gebet:</strong> Beim Gebet denkst du nur an Allah. Du
+            benutzt keine Amulette oder Glücksbringer, weil dein Vertrauen
+            allein bei Allah liegt.
+          </li>
+          <li>
+            <i class="fas fa-book icon"></i>
+            <strong>Den Qur’an lesen:</strong> Wenn du liest, dass Allah „über
+            dem Thron ist“, sagst du: „Okay, ich glaube das“, ohne zu versuchen,
+            es wie ein Bild zu verstehen.
+          </li>
+          <li>
+            <i class="fas fa-ban icon"></i>
+            <strong>Neuerungen vermeiden:</strong> Manche feiern den Geburtstag
+            des Propheten. Die Athariyyah sagt: „Das hat der Prophet nicht
+            gemacht, also machen wir es auch nicht.“
+          </li>
+          <li>
+            <i class="fas fa-heart icon"></i>
+            <strong>Die Sahaba respektieren:</strong> Wenn du von Ali oder Abu
+            Bakr hörst, sprichst du respektvoll über sie, weil sie die besten
+            Vorbilder sind.
+          </li>
+        </ul>
+        <p class="text">
+          Diese Beispiele zeigen, wie die Aqeedah dein Leben klar und einfach
+          macht.
+        </p>
+      </section>
+
+      <section id="doubts">
+        <h1>
+          <i class="fas fa-question-circle icon"></i>
+          <span class="title">Häufige Fragen und Zweifel</span>
+        </h1>
+        <p class="text">
+          Als neuer Muslim hast du vielleicht Fragen oder hörst Dinge, die dich
+          verwirren. Hier sind ein paar Antworten:
+        </p>
+        <ul class="list">
+          <li>
+            <i class="fas fa-comment icon"></i>
+            <strong
+              >Frage: Klingt das mit Allahs „Hand“ nicht wie ein Mensch?</strong
+            >
+            <p class="subtext">
+              Antwort: Nein, überhaupt nicht! Allah ist einzigartig. Wenn der
+              Qur’an „Hand“ sagt, glauben wir daran, aber wir wissen, dass
+              Allahs Hand nicht wie unsere ist. Es ist etwas, das wir nicht voll
+              verstehen können, und das ist okay!
+            </p>
+          </li>
+          <li>
+            <i class="fas fa-brain icon"></i>
+            <strong
+              >Frage: Ist die Athariyyah nicht zu einfach? Sollte Glaube nicht
+              kompliziert sein?</strong
+            >
+            <p class="subtext">
+              Antwort: Der Islam ist für alle da, nicht nur für Gelehrte. Die
+              Athariyyah hält es einfach, damit du dich auf Allah konzentrieren
+              kannst, ohne in langen Debatten verloren zu gehen.
+            </p>
+          </li>
+          <li>
+            <i class="fas fa-shield-alt icon"></i>
+            <strong
+              >Frage: Warum ist Hanbali so streng mit neuen Dingen?</strong
+            >
+            <p class="subtext">
+              Antwort: Es geht nicht um Strenge, sondern um Schutz. Imam Ahmad
+              wollte sicherstellen, dass der Glaube so bleibt, wie der Prophet
+              ihn gelehrt hat. Das gibt dir Sicherheit!
+            </p>
+          </li>
+        </ul>
+        <p class="text">
+          Wenn du mehr Fragen hast, sprich mit einem vertrauenswürdigen
+          Gelehrten oder lies den Qur’an – die Antworten sind immer da!
+        </p>
+      </section>
+    </main>
+
+    <button id="to-top" title="Nach oben">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      // JavaScript für Navigation, Sprache, Theme, Sidebar und To-Top
+      const languageSelect = document.getElementById("language");
+      const themeToggle = document.getElementById("theme-toggle");
+      const toTopButton = document.getElementById("to-top");
+      const navLinks = document.querySelectorAll(".sidebar a");
+      const sections = document.querySelectorAll("section");
+      const body = document.body;
+      const hamburger = document.querySelector(".hamburger");
+      const sidebar = document.querySelector(".sidebar");
+
+      // Inhalte für alle Sprachen
+      const content = {
+        de: {
+          nav: {
+            intro: "Einführung",
+            athariyyah: "Was ist Athariyyah?",
+            hanbali: "Hanbali-Rechtsschule",
+            principles: "Grundprinzipien",
+            examples: "Beispiele",
+            doubts: "Zweifel klären",
+          },
+          intro: {
+            title: "Willkommen! Was ist Aqeedah?",
+            text1:
+              "Hallo und herzlich willkommen! Wenn du neu im Islam bist, fragst du dich vielleicht, was „Aqeedah“ bedeutet. Ganz einfach: Aqeedah ist das, was du als Muslim im Herzen glaubst. Es ist wie der Kompass deines Glaubens, der dir zeigt, woran du glaubst und warum.",
+            text2:
+              "Die Aqeedah der Athariyyah ist eine ganz klare und einfache Art, den Islam zu verstehen. Sie sagt: „Vertrau auf den Qur’an und die Worte des Propheten Muhammad (Friede sei mit ihm), ohne viel zu spekulieren.“ In dieser Schule, die eng mit der Hanbali-Rechtsschule verbunden ist, lernst du, wie du deinen Glauben stark und rein hältst.",
+            text3:
+              "Die Aqeedah hat sechs wichtige Punkte, die wir „Säulen des Iman“ nennen:",
+            list: [
+              "Glaube an Allah – Er ist der Eine, der alles geschaffen hat.",
+              "Glaube an die Engel – wie Jibril, der die Botschaften Allahs bringt.",
+              "Glaube an die Bücher – wie den Qur’an oder die Torah.",
+              "Glaube an die Propheten – wie Muhammad oder Musa (Friede sei mit ihnen).",
+              "Glaube an den Tag des Gerichts – wenn wir alle vor Allah stehen.",
+              "Glaube an die Vorherbestimmung – alles geschieht nach Allahs Plan, aber du hast Entscheidungen.",
+            ],
+          },
+          athariyyah: {
+            title: "Was ist die Athariyyah?",
+            text1:
+              "Die Athariyyah ist wie ein klarer Weg, um den Islam zu verstehen. Stell dir vor, du liest den Qur’an oder hörst einen Hadith (eine Aussage des Propheten). Die Athariyyah sagt: „Glaube daran, wie es geschrieben steht, ohne es zu verkomplizieren.“",
+            text2:
+              "Hier sind die wichtigsten Dinge, die die Athariyyah ausmachen:",
+            list: [
+              "<strong>Allahs Beschreibungen akzeptieren:</strong> Der Qur’an sagt, Allah hat eine „Hand“ oder „ist über dem Thron“. Wir sagen: „Ja, das stimmt“, aber wir fragen nicht „Wie sieht das aus?“, weil Allah einzigartig ist.",
+              "<strong>Keine philosophischen Diskussionen:</strong> Manche Leute versuchen, den Glauben mit komplizierten Argumenten zu erklären. Athariyyah sagt: „Der Qur’an und die Sunnah reichen.“",
+              "<strong>Die ersten Muslime folgen:</strong> Die besten Lehrer sind die ersten drei Generationen des Islam – die Gefährten des Propheten und ihre Nachfolger.",
+            ],
+            text3:
+              "Die Athariyyah ist super für Anfänger, weil sie einfach ist. Du musst kein Gelehrter sein, um sie zu verstehen!",
+          },
+          hanbali: {
+            title: "Die Hanbali-Rechtsschule",
+            text1:
+              "Die Hanbali-Rechtsschule ist eine von vier „Schulen“ im sunnitischen Islam, die dir helfen, die Regeln des Islam zu verstehen. Sie wurde von Imam Ahmad ibn Hanbal gegründet, einem Mann, der den Qur’an und die Sunnah über alles stellte.",
+            text2: "Warum ist Hanbali besonders?",
+            list: [
+              "<strong>Nur Qur’an und Sunnah:</strong> Imam Ahmad sagte: „Wenn du wissen willst, wie du beten oder fasten sollst, schau in die Quellen.“",
+              "<strong>Schutz vor Neuem:</strong> Er warnte davor, neue Dinge im Glauben zu erfinden, die der Prophet nicht gemacht hat.",
+              "<strong>Standhaftigkeit:</strong> Imam Ahmad wurde sogar gefangen genommen, weil er seinen Glauben nicht änderte. Er ist ein Vorbild für Stärke.",
+            ],
+            text3:
+              "Die Hanbali-Schule passt perfekt zur Athariyyah, weil beide sagen: „Halte es einfach und bleib bei den Ursprüngen.“",
+          },
+          principles: {
+            title: "Die Grundprinzipien der Athari-Aqeedah",
+            text1:
+              "Die Athari-Aqeedah hat ein paar klare Regeln, die dir helfen, deinen Glauben zu verstehen. Hier sind die wichtigsten:",
+            list: [
+              "<strong>Tawhid – Allah ist Einer:</strong> Alles beginnt damit, dass du glaubst, dass Allah der Einzige ist, der Anbetung verdient. Das bedeutet: <ul><li>Allah ist der Schöpfer von allem.</li><li>Du betest nur zu Allah, nicht zu Heiligen oder Gräbern.</li><li>Allahs Namen und Eigenschaften sind einzigartig.</li></ul>",
+              "<strong>Allahs Eigenschaften:</strong> Wenn der Qur’an sagt, Allah „hört“ oder „sieht“, glauben wir das, ohne zu fragen, wie es funktioniert. Allah ist nicht wie wir!",
+              "<strong>Qadar – Vorherbestimmung:</strong> Alles, was passiert, ist Teil von Allahs Plan. Aber du hast die Freiheit, gute oder schlechte Entscheidungen zu treffen.",
+              "<strong>Die Gefährten ehren:</strong> Die Freunde des Propheten waren die besten Muslime. Wir lernen von ihnen und respektieren sie.",
+            ],
+            text2:
+              "Diese Prinzipien sind wie ein Leitfaden, der dir hilft, deinen Glauben richtig zu leben.",
+          },
+          examples: {
+            title: "Wie sieht das im Alltag aus?",
+            text1:
+              "Die Athari-Aqeedah ist nicht nur Theorie – sie hilft dir im täglichen Leben! Hier sind ein paar Beispiele:",
+            list: [
+              "<strong>Reines Gebet:</strong> Beim Gebet denkst du nur an Allah. Du benutzt keine Amulette oder Glücksbringer, weil dein Vertrauen allein bei Allah liegt.",
+              "<strong>Den Qur’an lesen:</strong> Wenn du liest, dass Allah „über dem Thron ist“, sagst du: „Okay, ich glaube das“, ohne zu versuchen, es wie ein Bild zu verstehen.",
+              "<strong>Neuerungen vermeiden:</strong> Manche feiern den Geburtstag des Propheten. Die Athariyyah sagt: „Das hat der Prophet nicht gemacht, also machen wir es auch nicht.“",
+              "<strong>Die Sahaba respektieren:</strong> Wenn du von Ali oder Abu Bakr hörst, sprichst du respektvoll über sie, weil sie die besten Vorbilder sind.",
+            ],
+            text2:
+              "Diese Beispiele zeigen, wie die Aqeedah dein Leben klar und einfach macht.",
+          },
+          doubts: {
+            title: "Häufige Fragen und Zweifel",
+            text1:
+              "Als neuer Muslim hast du vielleicht Fragen oder hörst Dinge, die dich verwirren. Hier sind ein paar Antworten:",
+            list: [
+              "<strong>Frage: Klingt das mit Allahs „Hand“ nicht wie ein Mensch?</strong><p>Antwort: Nein, überhaupt nicht! Allah ist einzigartig. Wenn der Qur’an „Hand“ sagt, glauben wir daran, aber wir wissen, dass Allahs Hand nicht wie unsere ist. Es ist etwas, das wir nicht voll verstehen können, und das ist okay!</p>",
+              "<strong>Frage: Ist die Athariyyah nicht zu einfach? Sollte Glaube nicht kompliziert sein?</strong><p>Antwort: Der Islam ist für alle da, nicht nur für Gelehrte. Die Athariyyah hält es einfach, damit du dich auf Allah konzentrieren kannst, ohne in langen Debatten verloren zu gehen.</p>",
+              "<strong>Frage: Warum ist Hanbali so streng mit neuen Dingen?</strong><p>Antwort: Es geht nicht um Strenge, sondern um Schutz. Imam Ahmad wollte sicherstellen, dass der Glaube so bleibt, wie der Prophet ihn gelehrt hat. Das gibt dir Sicherheit!</p>",
+            ],
+            text2:
+              "Wenn du mehr Fragen hast, sprich mit einem vertrauenswürdigen Gelehrten oder lies den Qur’an – die Antworten sind immer da!",
+          },
+        },
+        en: {
+          nav: {
+            intro: "Introduction",
+            athariyyah: "What is Athariyyah?",
+            hanbali: "Hanbali School",
+            principles: "Core Principles",
+            examples: "Examples",
+            doubts: "Clearing Doubts",
+          },
+          intro: {
+            title: "Welcome! What is Aqeedah?",
+            text1:
+              "Hello and welcome! If you're new to Islam, you might be wondering what 'Aqeedah' means. Simply put, Aqeedah is what you believe in your heart as a Muslim. It’s like the compass of your faith, showing you what to believe and why.",
+            text2:
+              "The Aqeedah of Athariyyah is a clear and simple way to understand Islam. It says: 'Trust the Qur’an and the words of Prophet Muhammad (peace be upon him) without overthinking.' This approach, closely tied to the Hanbali school, teaches you how to keep your faith strong and pure.",
+            text3: "Aqeedah has six key points, called the 'Pillars of Iman':",
+            list: [
+              "Belief in Allah – He is the One who created everything.",
+              "Belief in the angels – like Jibril, who brings Allah’s messages.",
+              "Belief in the books – like the Qur’an or the Torah.",
+              "Belief in the prophets – like Muhammad or Moses (peace be upon them).",
+              "Belief in the Day of Judgment – when we all stand before Allah.",
+              "Belief in predestination – everything happens by Allah’s plan, but you make choices.",
+            ],
+          },
+          athariyyah: {
+            title: "What is Athariyyah?",
+            text1:
+              "Athariyyah is like a clear path to understanding Islam. Imagine reading the Qur’an or hearing a Hadith (a saying of the Prophet). Athariyyah says: 'Believe it as it’s written, without complicating it.'",
+            text2: "Here are the key things that define Athariyyah:",
+            list: [
+              "<strong>Accepting Allah’s descriptions:</strong> The Qur’an says Allah has a 'hand' or 'is above the Throne.' We say: 'Yes, that’s true,' but we don’t ask 'What does it look like?' because Allah is unique.",
+              "<strong>No philosophical debates:</strong> Some people try to explain faith with complex arguments. Athariyyah says: 'The Qur’an and Sunnah are enough.'",
+              "<strong>Following the early Muslims:</strong> The best teachers are the first three generations of Islam – the Prophet’s companions and their followers.",
+            ],
+            text3:
+              "Athariyyah is great for beginners because it’s simple. You don’t need to be a scholar to get it!",
+          },
+          hanbali: {
+            title: "The Hanbali School",
+            text1:
+              "The Hanbali school is one of four 'schools' in Sunni Islam that help you understand Islam’s rules. It was founded by Imam Ahmad ibn Hanbal, a man who put the Qur’an and Sunnah above everything.",
+            text2: "Why is Hanbali special?",
+            list: [
+              "<strong>Only Qur’an and Sunnah:</strong> Imam Ahmad said: 'If you want to know how to pray or fast, look at the sources.'",
+              "<strong>Protecting from innovations:</strong> He warned against inventing new things in faith that the Prophet didn’t do.",
+              "<strong>Steadfastness:</strong> Imam Ahmad was even imprisoned for not changing his beliefs. He’s a role model for strength.",
+            ],
+            text3:
+              "The Hanbali school fits perfectly with Athariyyah because both say: 'Keep it simple and stick to the origins.'",
+          },
+          principles: {
+            title: "Core Principles of Athari Aqeedah",
+            text1:
+              "Athari Aqeedah has a few clear rules to help you understand your faith. Here are the main ones:",
+            list: [
+              "<strong>Tawhid – Allah is One:</strong> Everything starts with believing Allah is the only One worthy of worship. This means: <ul><li>Allah is the Creator of everything.</li><li>You pray only to Allah, not to saints or graves.</li><li>Allah’s names and attributes are unique.</li></ul>",
+              "<strong>Allah’s attributes:</strong> When the Qur’an says Allah 'hears' or 'sees,' we believe it without asking how it works. Allah isn’t like us!",
+              "<strong>Qadar – Predestination:</strong> Everything that happens is part of Allah’s plan. But you have the freedom to make good or bad choices.",
+              "<strong>Honoring the companions:</strong> The Prophet’s friends were the best Muslims. We learn from them and respect them.",
+            ],
+            text2:
+              "These principles are like a guide to help you live your faith correctly.",
+          },
+          examples: {
+            title: "What Does This Look Like in Daily Life?",
+            text1:
+              "Athari Aqeedah isn’t just theory – it helps you in daily life! Here are some examples:",
+            list: [
+              "<strong>Pure prayer:</strong> When you pray, you think only of Allah. You don’t use amulets or charms because your trust is in Allah alone.",
+              "<strong>Reading the Qur’an:</strong> If you read that Allah is 'above the Throne,' you say: 'Okay, I believe it,' without trying to picture it.",
+              "<strong>Avoiding innovations:</strong> Some celebrate the Prophet’s birthday. Athariyyah says: 'The Prophet didn’t do that, so we don’t either.'",
+              "<strong>Respecting the Sahaba:</strong> When you hear about Ali or Abu Bakr, you speak respectfully because they’re the best role models.",
+            ],
+            text2:
+              "These examples show how Aqeedah makes your life clear and simple.",
+          },
+          doubts: {
+            title: "Common Questions and Doubts",
+            text1:
+              "As a new Muslim, you might have questions or hear things that confuse you. Here are some answers:",
+            list: [
+              "<strong>Question: Doesn’t Allah’s 'hand' sound human?</strong><p>Answer: Not at all! Allah is unique. When the Qur’an says 'hand,' we believe it, but we know Allah’s hand isn’t like ours. It’s something we can’t fully understand, and that’s okay!</p>",
+              "<strong>Question: Isn’t Athariyyah too simple? Shouldn’t faith be complex?</strong><p>Answer: Islam is for everyone, not just scholars. Athariyyah keeps it simple so you can focus on Allah without getting lost in long debates.</p>",
+              "<strong>Question: Why is Hanbali so strict about new things?</strong><p>Answer: It’s not about being strict, it’s about protection. Imam Ahmad wanted to ensure faith stays as the Prophet taught it. That gives you certainty!</p>",
+            ],
+            text2:
+              "If you have more questions, talk to a trusted scholar or read the Qur’an – the answers are always there!",
+          },
+        },
+        ar: {
+          nav: {
+            intro: "مقدمة",
+            athariyyah: "ما هي الأثرية؟",
+            hanbali: "المدرسة الحنبلية",
+            principles: "المبادئ الأساسية",
+            examples: "أمثلة",
+            doubts: "توضيح الشكوك",
+          },
+          intro: {
+            title: "مرحبًا! ما هي العقيدة؟",
+            text1:
+              "مرحبًا وأهلاً بك! إذا كنت جديدًا في الإسلام، قد تتساءل ما معنى 'العقيدة'. ببساطة، العقيدة هي ما تؤمن به في قلبك كمسلم. إنها مثل بوصلة إيمانك، تُريك بماذا تؤمن ولماذا.",
+            text2:
+              "عقيدة الأثرية هي طريقة واضحة وبسيطة لفهم الإسلام. تقول: 'ثق بالقرآن وكلام النبي محمد (صلى الله عليه وسلم) دون تعقيد.' هذا النهج، المرتبط ارتباطًا وثيقًا بالمدرسة الحنبلية، يعلمك كيف تحافظ على إيمانك قويًا ونقيًا.",
+            text3: "للعقيدة ست نقاط رئيسية تُسمى 'أركان الإيمان':",
+            list: [
+              "الإيمان بالله – هو الواحد الذي خلق كل شيء.",
+              "الإيمان بالملائكة – مثل جبريل، الذي ينقل رسائل الله.",
+              "الإيمان بالكتب – مثل القرآن أو التوراة.",
+              "الإيمان بالأنبياء – مثل محمد أو موسى (عليهم السلام).",
+              "الإيمان بيوم القيامة – عندما نقف جميعًا أمام الله.",
+              "الإيمان بالقدر – كل شيء يحدث بمشيئة الله، لكن لديك خيارات.",
+            ],
+          },
+          athariyyah: {
+            title: "ما هي الأثرية؟",
+            text1:
+              "الأثرية مثل طريق واضح لفهم الإسلام. تخيل أنك تقرأ القرآن أو تسمع حديثًا (قول النبي). الأثرية تقول: 'آمن به كما كُتب، دون تعقيده.'",
+            text2: "إليك الأشياء الرئيسية التي تميز الأثرية:",
+            list: [
+              "<strong>قبول أوصاف الله:</strong> يقول القرآن إن لله 'يد' أو 'هو فوق العرش'. نقول: 'نعم، هذا صحيح'، لكننا لا نسأل 'كيف يبدو؟' لأن الله فريد.",
+              "<strong>لا نقاشات فلسفية:</strong> بعض الناس يحاولون تفسير الإيمان بحجج معقدة. الأثرية تقول: 'القرآن والسنة كافيان.'",
+              "<strong>اتباع المسلمين الأوائل:</strong> أفضل المعلمين هم الأجيال الثلاثة الأولى من الإسلام – صحابة النبي وأتباعهم.",
+            ],
+            text3:
+              "الأثرية رائعة للمبتدئين لأنها بسيطة. لا تحتاج أن تكون عالمًا لفهمها!",
+          },
+          hanbali: {
+            title: "المدرسة الحنبلية",
+            text1:
+              "المدرسة الحنبلية هي واحدة من أربع 'مدارس' في الإسلام السني تساعدك على فهم قواعد الإسلام. أسسها الإمام أحمد بن حنبل، رجل وضع القرآن والسنة فوق كل شيء.",
+            text2: "لماذا الحنبلية مميزة؟",
+            list: [
+              "<strong>القرآن والسنة فقط:</strong> قال الإمام أحمد: 'إذا أردت أن تعرف كيف تصلي أو تصوم، انظر إلى المصادر.'",
+              "<strong>الحماية من البدع:</strong> حذر من اختراع أشياء جديدة في الإيمان لم يفعلها النبي.",
+              "<strong>الثبات:</strong> سُجن الإمام أحمد لأنه لم يغير معتقداته. إنه قدوة للقوة.",
+            ],
+            text3:
+              "المدرسة الحنبلية تتناسب تمامًا مع الأثرية لأن كلاهما يقول: 'اجعلها بسيطة وتمسك بالأصول.'",
+          },
+          principles: {
+            title: "المبادئ الأساسية لعقيدة الأثرية",
+            text1:
+              "عقيدة الأثرية لها قواعد واضحة قليلة تساعدك على فهم إيمانك. إليك الرئيسية:",
+            list: [
+              "<strong>التوحيد – الله واحد:</strong> كل شيء يبدأ بالإيمان بأن الله هو الوحيد الذي يستحق العبادة. هذا يعني: <ul><li>الله هو خالق كل شيء.</li><li>تصلي لله فقط، لا للقديسين أو القبور.</li><li>أسماء الله وصفاته فريدة.</li></ul>",
+              "<strong>صفات الله:</strong> عندما يقول القرآن إن الله 'يسمع' أو 'يرى'، نؤمن بذلك دون أن نسأل كيف يعمل. الله ليس مثلنا!",
+              "<strong>القدر – القضاء والقدر:</strong> كل ما يحدث هو جزء من خطة الله. لكن لديك الحرية لاتخاذ خيارات جيدة أو سيئة.",
+              "<strong>تكريم الصحابة:</strong> أصدقاء النبي كانوا أفضل المسلمين. نتعلم منهم ونحترمهم.",
+            ],
+            text2: "هذه المبادئ مثل دليل يساعدك على عيش إيمانك بشكل صحيح.",
+          },
+          examples: {
+            title: "كيف يبدو هذا في الحياة اليومية؟",
+            text1:
+              "عقيدة الأثرية ليست مجرد نظرية – إنها تساعدك في حياتك اليومية! إليك بعض الأمثلة:",
+            list: [
+              "<strong>صلاة نقية:</strong> عندما تصلي، تفكر في الله فقط. لا تستخدم التمائم أو الحظوظ لأن ثقتك في الله وحده.",
+              "<strong>قراءة القرآن:</strong> إذا قرأت أن الله 'فوق العرش'، تقول: 'حسنًا، أؤمن بذلك'، دون محاولة تخيله.",
+              "<strong>تجنب البدع:</strong> بعضهم يحتفل بمولد النبي. الأثرية تقول: 'لم يفعل النبي ذلك، لذا لا نفعله.'",
+              "<strong>احترام الصحابة:</strong> عندما تسمع عن علي أو أبو بكر، تتحدث عنهم باحترام لأنهم أفضل القدوات.",
+            ],
+            text2: "هذه الأمثلة تُظهر كيف تجعل العقيدة حياتك واضحة وبسيطة.",
+          },
+          doubts: {
+            title: "الأسئلة والشكوك الشائعة",
+            text1:
+              "كمسلم جديد، قد تكون لديك أسئلة أو تسمع أشياء تربكك. إليك بعض الإجابات:",
+            list: [
+              "<strong>سؤال: ألا يبدو 'يد' الله مثل الإنسان؟</strong><p>الإجابة: لا، إطلاقًا! الله فريد. عندما يقول القرآن 'يد'، نؤمن به، لكننا نعلم أن يد الله ليست مثل يدنا. إنه شيء لا يمكننا فهمه بالكامل، وهذا جيد!</p>",
+              "<strong>سؤال: أليس الأثرية بسيطة جدًا؟ ألا يجب أن يكون الإيمان معقدًا؟</strong><p>الإجابة: الإسلام للجميع، وليس فقط للعلماء. الأثرية تبقيه بسيطًا حتى تتمكن من التركيز على الله دون أن تضيع في نقاشات طويلة.</p>",
+              "<strong>سؤال: لماذا الحنبلية صارمة جدًا بشأن الأشياء الجديدة؟</strong><p>الإجابة: ليس الأمر صرامة، بل حماية. أراد الإمام أحمد التأكد من أن الإيمان يبقى كما علمه النبي. هذا يمنحك اليقين!</p>",
+            ],
+            text2:
+              "إذا كان لديك المزيد من الأسئلة، تحدث إلى عالم موثوق أو اقرأ القرآن – الإجابات دائمًا موجودة!",
+          },
+        },
+      };
+
+      // Navigation
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          sections.forEach((section) => {
+            section.classList.remove("active");
+            if (section.id === targetId) {
+              section.classList.add("active");
+            }
+          });
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+          updateContent(languageSelect.value);
+          if (window.innerWidth <= 768) {
+            sidebar.classList.remove("open");
+          }
+        });
+      });
+
+      // Hamburger Menu Toggle
+      hamburger.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+      });
+
+      // Sprachumschaltung
+      languageSelect.addEventListener("change", (e) => {
+        const lang = e.target.value;
+        document.documentElement.lang = lang;
+        updateContent(lang);
+        updateNav(lang);
+      });
+
+      function updateNav(lang) {
+        navLinks.forEach((link) => {
+          const sectionId = link.getAttribute("href").substring(1);
+          link.textContent = content[lang].nav[sectionId];
+        });
+      }
+
+      function updateContent(lang) {
+        sections.forEach((section) => {
+          const sectionId = section.id;
+          const sectionContent = content[lang][sectionId];
+          if (sectionContent) {
+            section.querySelector(".title").textContent = sectionContent.title;
+            const texts = section.querySelectorAll(".text");
+            texts.forEach((text, index) => {
+              const textKey = `text${index + 1}`;
+              if (sectionContent[textKey]) {
+                text.textContent = sectionContent[textKey];
+              }
+            });
+            const list = section.querySelector(".list");
+            if (list && sectionContent.list) {
+              list.innerHTML = sectionContent.list
+                .map(
+                  (item) =>
+                    `<li><i class="fas fa-${
+                      sectionId === "intro"
+                        ? [
+                            "star",
+                            "angel",
+                            "scroll",
+                            "user-shield",
+                            "balance-scale",
+                            "road",
+                          ][sectionContent.list.indexOf(item)]
+                        : sectionId === "athariyyah"
+                        ? ["hand-holding-heart", "ban", "users"][
+                            sectionContent.list.indexOf(item)
+                          ]
+                        : sectionId === "hanbali"
+                        ? ["book-open", "shield-alt", "heart"][
+                            sectionContent.list.indexOf(item)
+                          ]
+                        : sectionId === "principles"
+                        ? ["star-and-crescent", "lightbulb", "road", "users"][
+                            sectionContent.list.indexOf(item)
+                          ]
+                        : sectionId === "examples"
+                        ? ["mosque", "book", "ban", "heart"][
+                            sectionContent.list.indexOf(item)
+                          ]
+                        : ["comment", "brain", "shield-alt"][
+                            sectionContent.list.indexOf(item)
+                          ]
+                    } icon"></i> ${item}</li>`
+                )
+                .join("");
+            }
+            if (sectionId === "doubts") {
+              const subtexts = section.querySelectorAll(".subtext");
+              subtexts.forEach((subtext, index) => {
+                const match =
+                  sectionContent.list[index].match(/<p>Antwort: (.*?)<\/p>/) ||
+                  sectionContent.list[index].match(/<p>Answer: (.*?)<\/p>/) ||
+                  sectionContent.list[index].match(/<p>الإجابة: (.*?)<\/p>/);
+                if (match) {
+                  subtext.textContent = match[1];
+                }
+              });
+            }
+          }
+        });
+      }
+
+      // Dark/Light Mode
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+          body.removeAttribute("data-theme");
+          themeToggle.textContent = "🌙";
+        } else {
+          body.setAttribute("data-theme", "dark");
+          themeToggle.textContent = "☀️";
+        }
+      });
+
+      // Zurück nach oben
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          toTopButton.classList.add("show");
+        } else {
+          toTopButton.classList.remove("show");
+        }
+      });
+
+      toTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Initiale Sprache setzen
+      updateNav("de");
+      updateContent("de");
+    </script>
+  </body>
+</html>
