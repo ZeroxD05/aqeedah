@@ -67,7 +67,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
+        gap: 1rem;
       }
 
       .logo {
@@ -94,6 +94,15 @@
       button {
         background-color: transparent;
         font-size: 1.2rem;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
       }
 
       /* Sidebar Styles */
@@ -129,15 +138,6 @@
       .sidebar a.active {
         background-color: var(--primary-color);
         color: #fff;
-      }
-
-      .hamburger {
-        display: none;
-        font-size: 1.5rem;
-        background: none;
-        border: none;
-        color: #fff;
-        cursor: pointer;
       }
 
       main {
@@ -180,23 +180,6 @@
         margin-right: 0.5rem;
       }
 
-      #to-top {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        background-color: var(--primary-color);
-        color: #fff;
-        padding: 0.5rem;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        display: none;
-      }
-
-      #to-top.show {
-        display: block;
-      }
-
       /* Responsive Design */
       @media (max-width: 768px) {
         .sidebar {
@@ -217,18 +200,20 @@
 
         .header-container {
           flex-direction: column;
-          gap: 1rem;
+          align-items: flex-start;
+          gap: 0.5rem;
         }
 
-        section {
-          padding: 1rem;
+        .controls {
+          width: 100%;
+          justify-content: space-between;
         }
       }
 
       @media (max-width: 480px) {
         .controls {
           flex-direction: column;
-          width: 100%;
+          gap: 0.5rem;
         }
 
         select,
@@ -560,15 +545,10 @@
       </section>
     </main>
 
-    <button id="to-top" title="Nach oben">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-      // JavaScript für Navigation, Sprache, Theme, Sidebar und To-Top
+      // JavaScript für Navigation, Sprache, Theme und Sidebar
       const languageSelect = document.getElementById("language");
       const themeToggle = document.getElementById("theme-toggle");
-      const toTopButton = document.getElementById("to-top");
       const navLinks = document.querySelectorAll(".sidebar a");
       const sections = document.querySelectorAll("section");
       const body = document.body;
@@ -966,19 +946,6 @@
           body.setAttribute("data-theme", "dark");
           themeToggle.textContent = "☀️";
         }
-      });
-
-      // Zurück nach oben
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          toTopButton.classList.add("show");
-        } else {
-          toTopButton.classList.remove("show");
-        }
-      });
-
-      toTopButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
       // Initiale Sprache setzen
